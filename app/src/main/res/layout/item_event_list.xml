@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/relativelayout_radius"
+        >
+
+        <RelativeLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/color_black"
+                android:text="Làng Tôi - Nhà Hát Tuồng Việt Nam"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/txt_dateStartEnd"
+                android:layout_below="@id/title_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="Thứ sáu, 10 tháng 11 - Chủ nhật, 12 tháng 11"/>
+            <TextView
+                android:id="@+id/txt_eventType"
+                android:layout_below="@id/txt_dateStartEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:text="LiveMusic"/>
+
+            <TextView
+                android:id="@+id/txt_location"
+                android:layout_below="@id/txt_eventType"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_white"
+                android:background="@drawable/border_textview"
+                android:text="Ho Chi Minh"/>
+
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_below="@id/txt_eventType"
+                android:layout_toRightOf="@id/txt_location"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_black"
+                android:background="@drawable/border_textview_price"
+                android:text="Từ 530.000 VND"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

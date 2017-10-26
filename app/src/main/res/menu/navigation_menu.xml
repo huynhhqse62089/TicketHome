@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_account"
+        android:icon="@mipmap/ic_turned_in_not_black_24dp"
+        android:title="Sự kiện đã lưu"/>
+
+    <item android:id="@+id/nav_intro"
+        android:icon="@mipmap/ic_info_outline_black_24dp"
+        android:title="Giới thiệu"/>
+
+    <item android:id="@+id/nav_ask"
+        android:icon="@mipmap/ic_help_outline_black_24dp"
+        android:title="Giải đáp thắc mắc"/>
+
+    <item android:id="@+id/nav_contact"
+        android:icon="@mipmap/ic_phone_in_talk_black_24dp"
+        android:title="Liên hệ chúng tôi"/>
+
+    <item android:id="@+id/nav_logout"
+        android:icon="@mipmap/ic_power_settings_new_black_24dp"
+        android:title="Log out"/>
+
+</menu>
