@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.huynhhq.tickethome.R;
 import com.example.huynhhq.tickethome.model.Event;
+import com.example.huynhhq.tickethome.model.Type;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -47,6 +48,7 @@ public class EventListApdater extends RecyclerView.Adapter<EventListApdater.MyVi
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Event event = listEvent.get(position);
+        List<Type> typeEvent = event.getType();
         Long startDate = Long.MIN_VALUE;
         Long endDate = Long.MIN_VALUE;
         try{
@@ -57,7 +59,14 @@ public class EventListApdater extends RecyclerView.Adapter<EventListApdater.MyVi
         String eDate = getCurrentDate(endDate);
         String startEndDate = sDate + " - " + eDate;
         holder.title_event.setText(event.getName());
-        holder.txt_eventType.setText("Community");
+        if(typeEvent.size() == 1){
+            holder.txt_eventType.setText(typeEvent.get(0).getName());
+        }else{
+            String type;
+            for (int i = 0; i < typeEvent.size(); i++){
+
+            }
+        }
         if(event.getCityId() == 1){
             holder.txt_location.setText("Ho Chi Minh");
         }else if(event.getCityId() == 2){

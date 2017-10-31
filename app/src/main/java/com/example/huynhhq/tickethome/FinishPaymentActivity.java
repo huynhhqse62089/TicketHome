@@ -29,9 +29,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.huynhhq.tickethome.model.InfoPayment.get_instance;
+import static com.example.huynhhq.tickethome.model.MyProgressBar.dismiss;
+import static com.example.huynhhq.tickethome.model.MyProgressBar.show;
 
 public class FinishPaymentActivity extends AppCompatActivity {
 
+    final String EVENT_BUNDLE_KEY = "EVENT_BUNDLE_KEY";
     Event event;
     TextView userFullname, userEmail, userSdt, idPttt, sumPrice;
     Button btnShowPrice, btnMinus, btnPlus, btnPay;
@@ -124,6 +127,7 @@ public class FinishPaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    show(FinishPaymentActivity.this);
                     int curPrice = Integer.parseInt(btnShowPrice.getText().toString());
                     if (curPrice == 0) {
                         Toast.makeText(FinishPaymentActivity.this, "Đặt vé cần ít nhất 1 vé.", Toast.LENGTH_SHORT).show();
@@ -144,10 +148,11 @@ public class FinishPaymentActivity extends AppCompatActivity {
                                 enqueue(new Callback<StatusRegister>() {
                                     @Override
                                     public void onResponse(Call<StatusRegister> call, Response<StatusRegister> response) {
+                                        dismiss();
                                         if (response.isSuccessful()) {
                                             StatusRegister statusRegister = response.body();
                                             if(statusRegister.getStatus() == true){
-                                                Intent intent = new Intent(FinishPaymentActivity.this, ChooseLocationActivity.class);
+                                                Intent intent = new Intent(FinishPaymentActivity.this, SuccessfulBookActivity.class);
                                                 Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
                                                 startActivity(intent, bndlanimation);
                                             }else{
@@ -210,9 +215,10 @@ public class FinishPaymentActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            super.onBackPressed();
-            overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -221,5 +227,8 @@ public class FinishPaymentActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        Intent intent = new Intent(FinishPaymentActivity.this, EventDetailActivity.class);
+        intent.putExtra(EVENT_BUNDLE_KEY, event);
+        startActivity(intent);
     }
 }

@@ -34,7 +34,6 @@ public interface UserService {
     @FormUrlEncoded
     @POST("/user/api_verify")
     Call<StatusRegister> checkVerify(@Field("username") String username,
-                                     @Field("verifycode") String verifyCode
-                                     );
+                                     @Field("verifycode") String verifyCode);
 
 }

@@ -23,6 +23,7 @@ import static com.example.huynhhq.tickethome.model.InfoPayment.get_instance;
 
 public class ChooseTicketActivity extends AppCompatActivity {
 
+    final String EVENT_BUNDLE_KEY = "EVENT_BUNDLE_KEY";
     Event event;
     TextView titleTicket, ticketPrice, priceEvent;
     Button btnContinue, btnMinus, btnPlus, btnShowPrice;
@@ -154,9 +155,10 @@ public class ChooseTicketActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            super.onBackPressed();
-            overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -165,5 +167,8 @@ public class ChooseTicketActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        Intent intent = new Intent(ChooseTicketActivity.this, EventDetailActivity.class);
+        intent.putExtra(EVENT_BUNDLE_KEY, event);
+        startActivity(intent);
     }
 }

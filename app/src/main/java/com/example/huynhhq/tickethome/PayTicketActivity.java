@@ -37,6 +37,7 @@ import static com.example.huynhhq.tickethome.model.InfoPayment.get_instance;
 
 public class PayTicketActivity extends AppCompatActivity {
 
+    final String EVENT_BUNDLE_KEY = "EVENT_BUNDLE_KEY";
     EditText inputDc;
     TextView inputName, inputEmail, inputSdt;
     TextView goBack;
@@ -286,11 +287,15 @@ public class PayTicketActivity extends AppCompatActivity {
     private boolean checkValidation() {
         if (!idBank.isChecked() && !idCkbank.isChecked() && !idTtd.isChecked() && !idCod.isChecked() && !idBuilding.isChecked()) {
             ViewDialog customAleart = new ViewDialog();
-            customAleart.showDialog(PayTicketActivity.this, "Xin hãy chọn phương thức thanh toán");
+            customAleart.showDialog(PayTicketActivity.this, "Xin hãy chọn phương thức thanh toán.");
             return false;
         } else if (idCod.isChecked() && inputDc.getText() == null) {
             ViewDialog customAleart = new ViewDialog();
-            customAleart.showDialog(PayTicketActivity.this, "Xin hãy đầy đủ thông tin ");
+            customAleart.showDialog(PayTicketActivity.this, "Xin hãy đầy đủ thông tin.");
+            return false;
+        } else if (idCod.isChecked() && inputDc.getText() != null) {
+            ViewDialog customAleart = new ViewDialog();
+            customAleart.showDialog(PayTicketActivity.this, "Dịch vụ này đang được tạm dừng.");
             return false;
         }
         return true;
@@ -311,17 +316,22 @@ public class PayTicketActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            super.onBackPressed();
-            overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        Intent intent = new Intent(PayTicketActivity.this, EventDetailActivity.class);
+        intent.putExtra(EVENT_BUNDLE_KEY, event);
+        startActivity(intent);
     }
 
 }

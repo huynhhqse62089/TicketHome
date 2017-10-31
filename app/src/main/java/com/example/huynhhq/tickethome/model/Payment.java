@@ -16,6 +16,7 @@ public class Payment {
     private Event event;
     private String payMethod;
     private String payMethodId;
+    private int idCity;
 
     public Payment() {
     }
@@ -108,6 +109,14 @@ public class Payment {
 
     public void setPayMethodId(String payMethodId) {
         this.payMethodId = payMethodId;
+    }
+
+    public int getIdCity() {
+        return idCity;
+    }
+
+    public void setIdCity(int idCity) {
+        this.idCity = idCity;
     }
 
 }

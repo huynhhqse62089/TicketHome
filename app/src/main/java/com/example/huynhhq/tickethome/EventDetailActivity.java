@@ -19,10 +19,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.huynhhq.tickethome.model.Event;
+import com.example.huynhhq.tickethome.model.Payment;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static com.example.huynhhq.tickethome.model.InfoPayment.get_instance;
 
 /**
  * Created by HuynhHQ on 10/24/2017.
@@ -37,11 +40,13 @@ public class EventDetailActivity extends AppCompatActivity {
     public final static String EVENT_BUNDLE_KEY = "EVENT_BUNDLE_KEY";
     Button btnBook;
     Event event;
+    Payment payment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_detail_activity);
+        payment = get_instance();
         configToolbar();
         bindingView();
         bindingAction();
@@ -157,9 +162,10 @@ public class EventDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            super.onBackPressed();
-            overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -168,6 +174,9 @@ public class EventDetailActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        Intent intent = new Intent(getApplicationContext(), MainScreenActivity.class);
+        intent.putExtra("ID_CTIY", payment.getIdCity());
+        startActivity(intent);
     }
 
     private String getCurrentDate(long timeStamp){

@@ -68,6 +68,7 @@ public class MainScreenActivity extends AppCompatActivity implements
         show(MainScreenActivity.this);
         Bundle b = getIntent().getExtras();
         typeIdCity = (int) b.get(ChooseLocationActivity.ID_CTIY);
+        payment.setIdCity(typeIdCity);
         EventService eventService = ServiceManager.getEventService();
         if (typeIdCity == 1) {
             eventService.getByCity(ID_HCM).enqueue(new Callback<List<Event>>() {
