@@ -48,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:text="Thứ sáu, 10 tháng 11 - Chủ nhật, 12 tháng 11"/>
+
             <TextView
                 android:id="@+id/txt_eventType"
                 android:layout_below="@id/txt_dateStartEnd"
@@ -78,6 +79,24 @@
                 android:textColor="@color/color_black"
                 android:background="@drawable/border_textview_price"
                 android:text="Từ 530.000 VND"/>
+
+            <ImageView
+                android:src="@drawable/ic_notifications_black_24dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="80dp"
+                android:layout_below="@id/txt_eventType"
+                android:layout_toRightOf="@id/txt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/txt_location"
+                android:id="@+id/time_begin"
+                android:textColor="@color/color_light_blue_900"
+                android:text="2 ngày trước"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 

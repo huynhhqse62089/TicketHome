@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="22">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="21.65"
+        android:background="@color/color_blue_grey_50"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/mCustomToolbar"
+            layout="@layout/customtoolbar_layout" />
+
+        <ScrollView
+            android:id="@+id/scroll_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:id="@+id/text1"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="THÔNG TIN NGƯỜI NHẬN VÉ"
+                        android:textColor="@color/color_black"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#c0c0c0" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/img_person"
+                            android:src="@drawable/ic_person_black_18dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/img_person"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="21dp"
+                            android:textStyle="bold"
+                            android:gravity="center|bottom"
+                            android:text="Họ tên"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/user_fullname"
+                            android:text="Hoang quoc huynh"
+                            android:textSize="21dp"
+                            android:textStyle="italic"
+                            android:layout_marginRight="15dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="19dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:src="@drawable/dotted"
+                        android:layerType="software" />
+
+                    <RelativeLayout
+                        android:layout_marginTop="22dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/img_email"
+                            android:src="@drawable/ic_email_black_18dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/img_email"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="21dp"
+                            android:textStyle="bold"
+                            android:gravity="center|bottom"
+                            android:text="Email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/user_email"
+                            android:text="Hoang quoc huynh"
+                            android:textSize="21dp"
+                            android:textStyle="italic"
+                            android:layout_marginRight="15dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="19dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:src="@drawable/dotted"
+                        android:layerType="software" />
+
+                    <RelativeLayout
+                        android:layout_marginTop="22dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/img_phone"
+                            android:src="@drawable/ic_phone_black_18dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/img_phone"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="21dp"
+                            android:textStyle="bold"
+                            android:gravity="center|bottom"
+                            android:text="Điện thoại"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/user_sdt"
+                            android:text="Hoang quoc huynh"
+                            android:textSize="21dp"
+                            android:textStyle="italic"
+                            android:layout_marginRight="15dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:id="@+id/text2"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HÌNH THỨC THANH TOÁN"
+                        android:textColor="@color/color_black"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#c0c0c0" />
+
+                <TextView
+                    android:id="@+id/id_pttt"
+                    android:textSize="21dp"
+                    android:textStyle="italic"
+                    android:text="hihihihihihihihihihihih"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:id="@+id/text3"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="THÔNG TIN ĐẶT VÉ"
+                        android:textColor="@color/color_black"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#c0c0c0" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:id="@+id/text4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LOẠI VÉ"
+                        android:textColor="@color/color_black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="SỐ LƯỢNG"
+                        android:textColor="@color/color_black"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="4"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/title_ticket"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NORMAL TICKET"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/ticket_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50.000 VND" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="116dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:weightSum="3">
+
+                        <TableRow
+                            android:id="@+id/toolbar"
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent">
+
+                            <Button
+                                android:id="@+id/btn_minus"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="-5dp"
+                                android:layout_marginRight="-4.5dp"
+                                android:layout_weight="0.2"
+                                android:text="−"
+                                android:textColor="@color/color_red_a700"
+                                android:textSize="15dp" />
+
+                            <Button
+                                android:id="@+id/btn_showPrice"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="-4.5dp"
+                                android:layout_marginRight="-4.5dp"
+                                android:layout_weight="0.2"
+                                android:clickable="false"
+                                android:text="0"
+                                android:textSize="15dp" />
+
+                            <Button
+                                android:id="@+id/btn_plus"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="-4.5dp"
+                                android:layout_marginRight="-4.5dp"
+                                android:textColor="@color/color_green_900"
+                                android:layout_weight="0.2"
+                                android:text="+"
+                                android:textSize="15dp" />
+
+                        </TableRow>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:background="@drawable/border_textview_finish_pament"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:id="@+id/text6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng cộng"
+                        android:textColor="@color/color_white"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/sum_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="100,000 VND"
+                        android:textColor="@color/color_white"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.45"
+        android:background="@color/color_white"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Thanh toán"
+            android:textColor="@color/color_white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

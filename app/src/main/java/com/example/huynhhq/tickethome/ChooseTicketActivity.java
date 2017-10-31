@@ -1,5 +1,7 @@
 package com.example.huynhhq.tickethome;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -13,14 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.huynhhq.tickethome.model.Event;
+import com.example.huynhhq.tickethome.model.Payment;
 
 import java.text.DecimalFormat;
+
+import static com.example.huynhhq.tickethome.model.InfoPayment.get_instance;
 
 public class ChooseTicketActivity extends AppCompatActivity {
 
     Event event;
     TextView titleTicket, ticketPrice, priceEvent;
     Button btnContinue, btnMinus, btnPlus, btnShowPrice;
+    Payment payment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,13 @@ public class ChooseTicketActivity extends AppCompatActivity {
         initViewValue();
         configToolbar();
         bindingAction();
+    }
+
+    private void saveData(){
+        payment = get_instance();
+        payment.setEvent(event);
+        payment.setCountTicket(btnShowPrice.getText().toString().trim());
+        payment.setNameTicket(titleTicket.getText().toString().trim());
     }
 
     private void initViewValue() {
@@ -52,7 +65,6 @@ public class ChooseTicketActivity extends AppCompatActivity {
     }
 
 
-
     private void bindingAction() {
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +81,10 @@ public class ChooseTicketActivity extends AppCompatActivity {
                         String formatted = formatter.format(amount * curPrice);
                         String realSum = "Tổng cộng: " + formatted + " VND";
                         priceEvent.setText(realSum);
-                        if(curPrice == 0){
+                        if (curPrice == 0) {
                             btnMinus.setTextColor(getResources().getColor(R.color.color_red_a700));
                             btnPlus.setTextColor(getResources().getColor(R.color.color_green_900));
-                        }else if(curPrice >= 1 && curPrice <= 4) {
+                        } else if (curPrice >= 1 && curPrice <= 4) {
                             btnMinus.setTextColor(getResources().getColor(R.color.color_green_900));
                             btnPlus.setTextColor(getResources().getColor(R.color.color_green_900));
                         }
@@ -98,10 +110,10 @@ public class ChooseTicketActivity extends AppCompatActivity {
                         String formatted = formatter.format(amount * curPrice);
                         String realSum = "Tổng cộng: " + formatted + " VND";
                         priceEvent.setText(realSum);
-                        if(curPrice == 4){
+                        if (curPrice == 4) {
                             btnPlus.setTextColor(getResources().getColor(R.color.color_red_a700));
                             btnMinus.setTextColor(getResources().getColor(R.color.color_green_900));
-                        }else if(curPrice >= 0 && curPrice <= 3){
+                        } else if (curPrice >= 0 && curPrice <= 3) {
                             btnMinus.setTextColor(getResources().getColor(R.color.color_green_900));
                             btnPlus.setTextColor(getResources().getColor(R.color.color_green_900));
                         }
@@ -114,7 +126,15 @@ public class ChooseTicketActivity extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int countTicket = Integer.parseInt(btnShowPrice.getText().toString().trim());
+                if (countTicket == 0) {
+                    Toast.makeText(ChooseTicketActivity.this, "Xin hãy chọn số lượng vé.", Toast.LENGTH_SHORT).show();
+                } else {
+                    saveData();
+                    Intent intent = new Intent(ChooseTicketActivity.this, PayTicketActivity.class);
+                    Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
+                    startActivity(intent, bndlanimation);
+                }
             }
         });
     }

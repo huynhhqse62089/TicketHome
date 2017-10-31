@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import static com.example.huynhhq.tickethome.model.InfoPayment.get_instance;
 import static com.example.huynhhq.tickethome.model.MyProgressBar.dismiss;
 import static com.example.huynhhq.tickethome.model.MyProgressBar.show;
 
@@ -29,6 +30,7 @@ import com.example.huynhhq.tickethome.adapter.EventListApdater;
 import com.example.huynhhq.tickethome.apiservice.EventService;
 import com.example.huynhhq.tickethome.model.Event;
 import com.example.huynhhq.tickethome.apiservice.ServiceManager;
+import com.example.huynhhq.tickethome.model.Payment;
 import com.example.huynhhq.tickethome.model.User;
 
 import java.util.List;
@@ -38,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainScreenActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener{
+        NavigationView.OnNavigationItemSelectedListener {
 
     final String TAG = "MainScreenActivity";
     private DrawerLayout mDrawerLayout;
@@ -54,6 +56,7 @@ public class MainScreenActivity extends AppCompatActivity implements
     TextView fullname, emailUser;
     NavigationView navigationView;
     View headerView;
+    Payment payment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +77,7 @@ public class MainScreenActivity extends AppCompatActivity implements
                     if (response.isSuccessful()) {
                         Log.d(TAG, "onResponse: IF");
                         listEvents = response.body();
-                        adapter = new EventListApdater(listEvents, MainScreenActivity.this, rowClickListener);
+                        adapter = new EventListApdater(listEvents, MainScreenActivity.this, rowClickListener, R.layout.item_event_list);
                         rcv.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     } else {
@@ -98,7 +101,7 @@ public class MainScreenActivity extends AppCompatActivity implements
                     if (response.isSuccessful()) {
                         Log.d(TAG, "onResponse: IF");
                         listEvents = response.body();
-                        adapter = new EventListApdater(listEvents, MainScreenActivity.this, rowClickListener);
+                        adapter = new EventListApdater(listEvents, MainScreenActivity.this, rowClickListener, R.layout.item_event_list);
                         rcv.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     } else {
@@ -122,7 +125,7 @@ public class MainScreenActivity extends AppCompatActivity implements
                     if (response.isSuccessful()) {
                         Log.d(TAG, "onResponse: IF");
                         listEvents = response.body();
-                        adapter = new EventListApdater(listEvents, MainScreenActivity.this, rowClickListener);
+                        adapter = new EventListApdater(listEvents, MainScreenActivity.this, rowClickListener, R.layout.item_event_list);
                         rcv.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     } else {
@@ -146,7 +149,7 @@ public class MainScreenActivity extends AppCompatActivity implements
                     if (response.isSuccessful()) {
                         Log.d(TAG, "onResponse: IF");
                         listEvents = response.body();
-                        adapter = new EventListApdater(listEvents, MainScreenActivity.this, rowClickListener);
+                        adapter = new EventListApdater(listEvents, MainScreenActivity.this, rowClickListener, R.layout.item_event_list);
                         rcv.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     } else {
@@ -170,6 +173,11 @@ public class MainScreenActivity extends AppCompatActivity implements
     private void initViewValue() {
         final DBManager dbManager = new DBManager(this);
         User user = dbManager.getUser();
+        payment = get_instance();
+        payment.setUsername(user.getUsername());
+        payment.setFullname(user.getFullname());
+        payment.setEmail(user.getEmail());
+        payment.setPhoneNumber(user.getPhone());
         fullname.setText(user.getFullname());
         emailUser.setText(user.getEmail());
     }
@@ -215,6 +223,7 @@ public class MainScreenActivity extends AppCompatActivity implements
         @Override
         public void itemClick(View view, int position) {
             Event event = listEvents.get(position);
+            payment.setEvent(event);
             Intent intent = new Intent(MainScreenActivity.this, EventDetailActivity.class);
             Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
             intent.putExtra(EVENT_BUNDLE_KEY, event);
@@ -225,15 +234,19 @@ public class MainScreenActivity extends AppCompatActivity implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.nav_account){
+        if (id == R.id.nav_choose_location) {
+            Intent intent = new Intent(MainScreenActivity.this, ChooseLocationActivity.class);
+            Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.trans_right_in, R.anim.trans_right_out).toBundle();
+            startActivity(intent, bndlanimation);
+        } else if (id == R.id.nav_save_event) {
 
-        }else if(id == R.id.nav_intro){
+        } else if (id == R.id.nav_intro) {
 
-        }else if(id == R.id.nav_ask){
+        } else if (id == R.id.nav_ask) {
 
-        }else if(id == R.id.nav_contact){
+        } else if (id == R.id.nav_contact) {
 
-        }else if(id == R.id.nav_logout){
+        } else if (id == R.id.nav_logout) {
             final DBManager dbManager = new DBManager(this);
             dbManager.deleteUser();
             Intent intent = new Intent(MainScreenActivity.this, LoginActivity.class);

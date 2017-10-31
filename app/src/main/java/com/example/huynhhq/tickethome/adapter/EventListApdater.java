@@ -28,16 +28,18 @@ public class EventListApdater extends RecyclerView.Adapter<EventListApdater.MyVi
     private Context context;
     private ItemRowClickListener itemRowClickListener;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+    private int idItemList;
 
-    public EventListApdater(List listEvent, Context context, ItemRowClickListener rowClickListener) {
+    public EventListApdater(List listEvent, Context context, ItemRowClickListener rowClickListener, int idItemList) {
         this.listEvent = listEvent;
         this.context = context;
         this.itemRowClickListener = rowClickListener;
+        this.idItemList = idItemList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View myView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event_list, parent, false);
+        final View myView = LayoutInflater.from(parent.getContext()).inflate(idItemList, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(myView, itemRowClickListener);
         return myViewHolder;
     }
@@ -45,8 +47,12 @@ public class EventListApdater extends RecyclerView.Adapter<EventListApdater.MyVi
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Event event = listEvent.get(position);
-        Long startDate = Long.parseLong(event.getStartDate());
-        Long endDate = Long.parseLong(event.getEndDate());
+        Long startDate = Long.MIN_VALUE;
+        Long endDate = Long.MIN_VALUE;
+        try{
+            startDate  = Long.parseLong(event.getStartDate());
+            endDate = Long.parseLong(event.getEndDate());
+
         String sDate = getCurrentDate(startDate);
         String eDate = getCurrentDate(endDate);
         String startEndDate = sDate + " - " + eDate;
@@ -64,6 +70,9 @@ public class EventListApdater extends RecyclerView.Adapter<EventListApdater.MyVi
         String formatted = formatter.format(amount);
         holder.txt_price.setText(formatted + " VND");
         holder.txt_dateStartEnd.setText(startEndDate);
+        }catch (NumberFormatException se){
+            System.out.println(se);
+        }
     }
 
     @Override

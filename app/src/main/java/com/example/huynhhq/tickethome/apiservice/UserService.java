@@ -31,4 +31,10 @@ public interface UserService {
                                     @Field("role") int role
                             );
 
+    @FormUrlEncoded
+    @POST("/user/api_verify")
+    Call<StatusRegister> checkVerify(@Field("username") String username,
+                                     @Field("verifycode") String verifyCode
+                                     );
+
 }

@@ -26,4 +26,8 @@ public class ServiceManager {
     public static EventService getEventService(){
         return RetrofitClient.getClient(getURL()).create(EventService.class);
     }
+
+    public static  TicketService getTicketService(){
+        return RetrofitClient.getClient(getURL()).create(TicketService.class);
+    }
 }

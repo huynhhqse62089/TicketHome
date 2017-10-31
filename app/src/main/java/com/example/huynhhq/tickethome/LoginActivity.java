@@ -26,12 +26,13 @@ import static com.example.huynhhq.tickethome.model.MyProgressBar.dismiss;
 import static com.example.huynhhq.tickethome.model.MyProgressBar.show;
 
 public class LoginActivity extends AppCompatActivity {
+
+    public final static String USER_INFO = "USER_INFO";
     final String TAG = "LoginActivity";
     private EditText txtUsername, txtPassword;
     private Button btnLogin;
     private TextView tvRegister;
     UserService userService;
-    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +70,19 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d(TAG, "onResponse: IF");
                                 User user = response.body();
                                 if (user.getStatus()) {
-                                    dbManager.addUser(user);
-                                    Intent intent = new Intent(LoginActivity.this, ChooseLocationActivity.class);
-                                    Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
-                                    startActivity(intent, bndlanimation);
+                                    if (user.getVerified() == 1) {
+                                        dbManager.addUser(user);
+                                        Intent intent = new Intent(LoginActivity.this, ChooseLocationActivity.class);
+                                        Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
+                                        startActivity(intent, bndlanimation);
+                                    } else {
+                                        Intent intent = new Intent(LoginActivity.this, VerifyAccountActivity.class);
+                                        Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
+                                        intent.putExtra(USER_INFO, user);
+                                        startActivity(intent, bndlanimation);
+                                    }
                                 } else {
-                                    Toast.makeText(LoginActivity.this, "Your username or password is wrong!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Username hoặc mật khẩu không đúng!", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
                                 Log.d(TAG, "onResponse: ELSE");
@@ -85,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<User> call, Throwable t) {
                             dismiss();
-                            Log.d(TAG, "onFailure: Something wrong!");
+                            Log.d(TAG, "onFailure: Đã có lỗi xảy ra!");
                             t.printStackTrace();
                         }
                     });
@@ -108,11 +116,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean checkValidLogin(String username, String password) {
         if (username.length() <= 6) {
-            Toast.makeText(LoginActivity.this, "Please input username again! (greater than 6 char)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Xin hãy nhập lại Username! (Phải hơn 6 ký tự)", Toast.LENGTH_SHORT).show();
             dismiss();
             return false;
         } else if (password.length() <= 6) {
-            Toast.makeText(LoginActivity.this, "Please input password again! (greater than 6 char)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Xin hãy nhập lại mật khẩu! (greater than 6 char)", Toast.LENGTH_SHORT).show();
             dismiss();
             return false;
         }

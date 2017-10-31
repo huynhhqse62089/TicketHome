@@ -79,6 +79,15 @@
                 android:background="@drawable/border_textview_price"
                 android:text="Từ 530.000 VND"/>
 
+            <ImageView
+                android:src="@drawable/ic_turned_in_black_24dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="80dp"
+                android:layout_below="@id/txt_eventType"
+                android:layout_toRightOf="@id/txt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </RelativeLayout>
 
 

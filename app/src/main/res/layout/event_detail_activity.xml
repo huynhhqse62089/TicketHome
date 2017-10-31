@@ -81,14 +81,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_share_black_24dp" />
+                            android:src="@drawable/ic_location_on_black_24dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="5dp"
-                            android:text="Chia sẽ" />
+                            android:text="Địa điểm" />
 
                     </LinearLayout>
 
@@ -262,10 +262,10 @@
 
         <TextView
             android:id="@+id/price_event"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:gravity="center"
             android:text="Từ 50.000 VND"
             android:textColor="@color/color_white"

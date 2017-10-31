@@ -2,6 +2,8 @@
     <string name="app_name">TicketHome</string>
     <string name="event_detail">Chi tiết sự kiện</string>
     <string name="choose_location_title">Chọn địa điểm</string>
+    <string name="saved_event">Sự kiện đã lưu</string>
+    <string name="notify_event">Thông báo</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="go_back">Quay lại</string>

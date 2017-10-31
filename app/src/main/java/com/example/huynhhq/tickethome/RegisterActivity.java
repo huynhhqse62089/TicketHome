@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huynhhq.tickethome.Data.DBManager;
 import com.example.huynhhq.tickethome.apiservice.ServiceManager;
 import com.example.huynhhq.tickethome.apiservice.UserService;
 import com.example.huynhhq.tickethome.model.StatusRegister;
@@ -35,6 +36,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public final static String USER_INFO = "USER_INFO";
     final String TAG = "RegisterActivity";
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
     private Button btnDob, btnRegister;
@@ -118,7 +120,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void btnRegister() {
         show(this);
-        String fullname, email, username, password, passwordConfirm, phone;
+        final DBManager dbManager = new DBManager(this);
+        final String fullname, email, username, password, passwordConfirm, phone;
         fullname = txtName.getText().toString().trim();
         email = txtMail.getText().toString().trim();
         username = txtUsername.getText().toString().trim();
@@ -129,8 +132,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 editDate.get(Calendar.YEAR),
                 editDate.get(Calendar.MONTH),
                 editDate.get(Calendar.DAY_OF_MONTH));
-        Date dob = calendar.getTime();
-        String dobStr = String.valueOf(dob.getTime());
+        final Date dob = calendar.getTime();
+        final String dobStr = String.valueOf(dob.getTime());
         boolean check = checkValid(fullname, email, username, password, passwordConfirm, phone, dob);
         try {
             if (check) {
@@ -142,7 +145,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             Log.d(TAG, "onResponse: IF");
                             StatusRegister status = response.body();
                             if (status.getStatus()) {
-                                Intent intent = new Intent(RegisterActivity.this, ChooseLocationActivity.class);
+                                user = new User(username,password, fullname, phone, email, dobStr, 0);
+                                dbManager.addUser(user);
+                                Intent intent = new Intent(RegisterActivity.this, VerifyAccountActivity.class);
+                                intent.putExtra(USER_INFO, user);
                                 Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
                                 startActivity(intent, bndlanimation);
                             } else if(status.getMessage().equals("existed")){

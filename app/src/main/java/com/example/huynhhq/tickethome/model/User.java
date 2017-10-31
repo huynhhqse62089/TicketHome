@@ -11,6 +11,9 @@ import java.sql.Timestamp;
  */
 public class User implements Serializable {
 
+    @SerializedName("status")
+    @Expose
+    private boolean status;
     @SerializedName("id")
     @Expose
     private int id;
@@ -35,9 +38,18 @@ public class User implements Serializable {
     @SerializedName("role")
     @Expose
     private int role;
-    @SerializedName("status")
+
+    public int getVerified() {
+        return verified;
+    }
+
+    public void setVerified(int verified) {
+        this.verified = verified;
+    }
+
+    @SerializedName("verified")
     @Expose
-    private boolean status;
+    private int verified;
 
     public boolean getStatus() {
         return status;
@@ -46,7 +58,6 @@ public class User implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
 
     public User(String username, String password, String fullname, String phone, String email, String dob, int role) {
         this.username = username;
@@ -137,4 +148,5 @@ public class User implements Serializable {
     public void setDob(String dob) {
         this.dob = dob;
     }
+
 }
