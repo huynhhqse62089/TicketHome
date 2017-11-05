@@ -96,8 +96,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_out_slot"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_out_slot">
 
                 <TextView
                     android:id="@+id/tex1"
@@ -109,18 +109,18 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_below="@+id/tex1"
+                    android:layout_gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
                     <RadioButton
                         android:id="@+id/rd_gmail"
-                        android:checked="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Email"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="Email" />
 
                     <RadioButton
                         android:id="@+id/rd_phone"
@@ -128,8 +128,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:text="Số điện thoại"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:text="Số điện thoại" />
 
                 </RadioGroup>
 

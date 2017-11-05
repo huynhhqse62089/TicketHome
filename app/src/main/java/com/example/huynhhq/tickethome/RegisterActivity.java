@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private RelativeLayout alreadyAcc;
     private User user;
     UserService userService;
+    RadioButton rdGmail, rdPhone;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnDob.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
         alreadyAcc.setOnClickListener(this);
+        rdGmail = (RadioButton) findViewById(R.id.rd_gmail);
+        rdPhone= (RadioButton) findViewById(R.id.rd_phone);
     }
 
     private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -135,9 +139,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         final Date dob = calendar.getTime();
         final String dobStr = String.valueOf(dob.getTime());
         boolean check = checkValid(fullname, email, username, password, passwordConfirm, phone, dob);
+        int verifymethod = 1;
+        if(rdGmail.isChecked()){
+            verifymethod = 1;
+        }else if(rdPhone.isChecked()){
+            verifymethod = 2;
+        }
         try {
             if (check) {
-                userService.createUser(username, password, fullname, phone, email, dobStr, 0).enqueue(new Callback<StatusRegister>() {
+                userService.createUser(username, password, fullname, phone, email, dobStr, 0, verifymethod).enqueue(new Callback<StatusRegister>() {
                     @Override
                     public void onResponse(Call<StatusRegister> call, Response<StatusRegister> response) {
                         dismiss();

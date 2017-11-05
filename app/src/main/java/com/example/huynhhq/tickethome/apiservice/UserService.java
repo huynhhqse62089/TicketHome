@@ -28,8 +28,9 @@ public interface UserService {
                                     @Field("phone") String phone,
                                     @Field("email") String email,
                                     @Field("dob") String dob,
-                                    @Field("role") int role
-                            );
+                                    @Field("role") int role,
+                                    @Field("verifymethod") int verifymethod
+    );
 
     @FormUrlEncoded
     @POST("/user/api_verify")
