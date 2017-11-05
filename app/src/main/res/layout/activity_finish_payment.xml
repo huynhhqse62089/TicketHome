@@ -65,7 +65,7 @@
 
                         <ImageView
                             android:id="@+id/img_person"
-                            android:src="@drawable/ic_person_black_18dp"
+                            android:src="@drawable/ic_person_green"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -110,7 +110,7 @@
 
                         <ImageView
                             android:id="@+id/img_email"
-                            android:src="@drawable/ic_email_black_18dp"
+                            android:src="@drawable/ic_email_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -155,7 +155,7 @@
 
                         <ImageView
                             android:id="@+id/img_phone"
-                            android:src="@drawable/ic_phone_black_18dp"
+                            android:src="@drawable/ic_phone_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 

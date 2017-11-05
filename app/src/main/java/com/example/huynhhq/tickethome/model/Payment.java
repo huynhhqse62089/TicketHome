@@ -17,6 +17,8 @@ public class Payment {
     private String payMethod;
     private String payMethodId;
     private int idCity;
+    private String dob;
+    private int mode;
 
     public Payment() {
     }
@@ -119,4 +121,19 @@ public class Payment {
         this.idCity = idCity;
     }
 
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public int getMode() {
+        return mode;
+    }
+
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
 }

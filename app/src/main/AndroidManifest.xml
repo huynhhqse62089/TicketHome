@@ -13,26 +13,59 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChooseLocationActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainScreenActivity" />
-        <activity android:name=".VerifyAccountActivity" />
-        <activity android:name=".EventDetailActivity" />
-        <activity android:name=".ChooseTicketActivity" />
-        <activity android:name=".PayTicketActivity" />
-        <activity android:name=".SaveEventsActivity" />
-        <activity android:name=".NotifiEventActivity" />
-        <activity android:name=".FinishPaymentActivity" />
-        <activity android:name=".SuccessfulBookActivity"></activity>
+        <activity
+            android:name=".ChooseLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VerifyAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EventDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChooseTicketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PayTicketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SaveEventsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NotifiEventActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FinishPaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SuccessfulBookActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ProfileActivity" />
+
+        <receiver android:name=".Notification_receiver" />
+
+        <activity android:name=".FinishPaymentFreeActivity"/>
     </application>
 
 </manifest>

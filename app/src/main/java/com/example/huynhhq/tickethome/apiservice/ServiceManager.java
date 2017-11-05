@@ -30,4 +30,8 @@ public class ServiceManager {
     public static  TicketService getTicketService(){
         return RetrofitClient.getClient(getURL()).create(TicketService.class);
     }
+
+    public static InteresteventService  getInteresteventService(){
+        return RetrofitClient.getClient(getURL()).create(InteresteventService.class);
+    }
 }

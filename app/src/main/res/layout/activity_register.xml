@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Họ và tên"
                 android:inputType="textPersonName"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
             <EditText
                 android:id="@+id/txt_email"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
             <EditText
                 android:id="@+id/txt_usernameReg"
@@ -39,22 +39,22 @@
                 android:layout_height="wrap_content"
                 android:hint="Username"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
             <EditText
                 android:id="@+id/txt_phoneReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="0123456789"
                 android:hint="Số điện thoại"
                 android:inputType="phone"
-                android:digits="0123456789"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
             <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:id="@+id/btn_set_dob"
@@ -63,9 +63,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:minHeight="40dp"
-                    android:textStyle="bold"
                     android:text="  Set Your Birthday  "
-                    android:textColor="@color/color_white" />
+                    android:textColor="@color/color_white"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_dob"
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Mật khẩu"
                 android:inputType="textPassword"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
             <EditText
                 android:id="@+id/txt_passwordComfirm"
@@ -91,13 +91,56 @@
                 android:layout_height="wrap_content"
                 android:hint="Xác nhận mật khẩu"
                 android:inputType="textPassword"
-                android:maxLines="1"/>
+                android:maxLines="1" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_out_slot"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tex1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gửi mã xác nhận tài khoản qua:"
+                    android:textSize="18.5dp" />
+
+                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_below="@+id/tex1"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RadioButton
+                        android:id="@+id/rd_gmail"
+                        android:checked="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:layout_weight="1"/>
+
+                    <RadioButton
+                        android:id="@+id/rd_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="Số điện thoại"
+                        android:layout_weight="1"/>
+
+                </RadioGroup>
+
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/color_light_green_600"
                 android:text="ĐĂNG KÝ"
                 android:textColor="@color/color_white"

@@ -25,11 +25,13 @@ import static com.example.huynhhq.tickethome.model.InfoPayment.get_instance;
 import static com.example.huynhhq.tickethome.model.MyProgressBar.dismiss;
 import static com.example.huynhhq.tickethome.model.MyProgressBar.show;
 
+import com.example.huynhhq.tickethome.Data.DBEventManager;
 import com.example.huynhhq.tickethome.Data.DBManager;
 import com.example.huynhhq.tickethome.adapter.EventListApdater;
 import com.example.huynhhq.tickethome.apiservice.EventService;
 import com.example.huynhhq.tickethome.model.Event;
 import com.example.huynhhq.tickethome.apiservice.ServiceManager;
+import com.example.huynhhq.tickethome.model.EventNotification;
 import com.example.huynhhq.tickethome.model.Payment;
 import com.example.huynhhq.tickethome.model.User;
 
@@ -167,8 +169,15 @@ public class MainScreenActivity extends AppCompatActivity implements
                 }
             });
         }
-
-
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainScreenActivity.this, ProfileActivity.class);
+                Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
+                ;
+                startActivity(intent, bndlanimation);
+            }
+        });
     }
 
     private void initViewValue() {
@@ -179,6 +188,7 @@ public class MainScreenActivity extends AppCompatActivity implements
         payment.setFullname(user.getFullname());
         payment.setEmail(user.getEmail());
         payment.setPhoneNumber(user.getPhone());
+        payment.setDob(user.getDob());
         fullname.setText(user.getFullname());
         emailUser.setText(user.getEmail());
     }
@@ -225,6 +235,7 @@ public class MainScreenActivity extends AppCompatActivity implements
         public void itemClick(View view, int position) {
             Event event = listEvents.get(position);
             payment.setEvent(event);
+            payment.setMode(1);
             Intent intent = new Intent(MainScreenActivity.this, EventDetailActivity.class);
             Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
             intent.putExtra(EVENT_BUNDLE_KEY, event);
@@ -240,7 +251,15 @@ public class MainScreenActivity extends AppCompatActivity implements
             Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.trans_right_in, R.anim.trans_right_out).toBundle();
             startActivity(intent, bndlanimation);
         } else if (id == R.id.nav_save_event) {
-
+            payment.setMode(2);
+            Intent intent = new Intent(MainScreenActivity.this, SaveEventsActivity.class);
+            Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.trans_right_in, R.anim.trans_right_out).toBundle();
+            startActivity(intent, bndlanimation);
+        } else if (id == R.id.nav_notify_event) {
+            payment.setMode(2);
+            Intent intent = new Intent(MainScreenActivity.this, NotifiEventActivity.class);
+            Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.trans_right_in, R.anim.trans_right_out).toBundle();
+            startActivity(intent, bndlanimation);
         } else if (id == R.id.nav_intro) {
 
         } else if (id == R.id.nav_ask) {

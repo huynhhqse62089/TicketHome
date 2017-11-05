@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,9 +26,11 @@ public class ChooseTicketActivity extends AppCompatActivity {
 
     final String EVENT_BUNDLE_KEY = "EVENT_BUNDLE_KEY";
     Event event;
-    TextView titleTicket, ticketPrice, priceEvent;
+    TextView titleTicket, ticketPrice, priceEvent, outSlot;
     Button btnContinue, btnMinus, btnPlus, btnShowPrice;
     Payment payment;
+    TableRow tableRow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,20 @@ public class ChooseTicketActivity extends AppCompatActivity {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String formatted = formatter.format(amount);
         ticketPrice.setText(formatted + " VND");
+        if(event.getNumberSlot() <= 0){
+            outSlot.setVisibility(View.VISIBLE);
+            tableRow.setVisibility(View.GONE);
+            btnContinue.setEnabled(false);
+        }else{
+            outSlot.setVisibility(View.GONE);
+            tableRow.setVisibility(View.VISIBLE);
+            btnContinue.setEnabled(true);
+        }
     }
 
     private void bindingView() {
+        tableRow = (TableRow) findViewById(R.id.table_row);
+        outSlot = (TextView) findViewById(R.id.out_slot);
         titleTicket = (TextView) findViewById(R.id.title_ticket);
         ticketPrice = (TextView) findViewById(R.id.ticket_price);
         priceEvent = (TextView) findViewById(R.id.price_event);
@@ -105,18 +119,22 @@ public class ChooseTicketActivity extends AppCompatActivity {
                         Toast.makeText(ChooseTicketActivity.this, "Bạn chỉ được mua tối thiểu 4 vé", Toast.LENGTH_SHORT).show();
                     } else {
                         curPrice += 1;
-                        btnShowPrice.setText(String.valueOf(curPrice));
-                        double amount = Double.parseDouble(event.getPrice());
-                        DecimalFormat formatter = new DecimalFormat("#,###");
-                        String formatted = formatter.format(amount * curPrice);
-                        String realSum = "Tổng cộng: " + formatted + " VND";
-                        priceEvent.setText(realSum);
-                        if (curPrice == 4) {
-                            btnPlus.setTextColor(getResources().getColor(R.color.color_red_a700));
-                            btnMinus.setTextColor(getResources().getColor(R.color.color_green_900));
-                        } else if (curPrice >= 0 && curPrice <= 3) {
-                            btnMinus.setTextColor(getResources().getColor(R.color.color_green_900));
-                            btnPlus.setTextColor(getResources().getColor(R.color.color_green_900));
+                        if(curPrice <= event.getNumberSlot()){
+                            btnShowPrice.setText(String.valueOf(curPrice));
+                            double amount = Double.parseDouble(event.getPrice());
+                            DecimalFormat formatter = new DecimalFormat("#,###");
+                            String formatted = formatter.format(amount * curPrice);
+                            String realSum = "Tổng cộng: " + formatted + " VND";
+                            priceEvent.setText(realSum);
+                            if (curPrice == 4) {
+                                btnPlus.setTextColor(getResources().getColor(R.color.color_red_a700));
+                                btnMinus.setTextColor(getResources().getColor(R.color.color_green_900));
+                            } else if (curPrice >= 0 && curPrice <= 3) {
+                                btnMinus.setTextColor(getResources().getColor(R.color.color_green_900));
+                                btnPlus.setTextColor(getResources().getColor(R.color.color_green_900));
+                            }
+                        }else{
+                            Toast.makeText(ChooseTicketActivity.this, "Hiện hệ thống chỉ còn lại " + event.getNumberSlot() + " vé.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (NumberFormatException ex) {

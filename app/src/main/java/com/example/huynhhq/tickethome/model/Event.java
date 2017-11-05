@@ -51,6 +51,12 @@ public class Event implements Serializable{
     @SerializedName("type")
     @Expose
     private List<Type> type;
+    @SerializedName("check")
+    @Expose
+    private boolean check;
+    @SerializedName("notify")
+    @Expose
+    private boolean notify ;
 
     public Event(int id, int organiezerId, String name, String description, String startDate, String endDate, String address, String createdTime, boolean enable, int numberSlot, int cityId) {
         this.id = id;
@@ -177,5 +183,21 @@ public class Event implements Serializable{
 
     public void setType(List<Type> type) {
         this.type = type;
+    }
+
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+
+    public boolean isNotify() {
+        return notify;
+    }
+
+    public void setNotify(boolean notify) {
+        this.notify = notify;
     }
 }

@@ -9,6 +9,10 @@
         android:icon="@mipmap/ic_turned_in_not_black_24dp"
         android:title="Sự kiện đã lưu"/>
 
+    <item android:id="@+id/nav_notify_event"
+        android:icon="@mipmap/ic_notifications_none_black_24dp"
+        android:title="Thông báo"/>
+
     <item android:id="@+id/nav_intro"
         android:icon="@mipmap/ic_info_outline_black_24dp"
         android:title="Giới thiệu"/>

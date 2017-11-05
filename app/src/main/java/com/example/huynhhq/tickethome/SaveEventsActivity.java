@@ -10,28 +10,75 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.huynhhq.tickethome.adapter.EventListApdater;
+import com.example.huynhhq.tickethome.apiservice.InteresteventService;
+import com.example.huynhhq.tickethome.apiservice.ServiceManager;
 import com.example.huynhhq.tickethome.model.Event;
+import com.example.huynhhq.tickethome.model.Payment;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.huynhhq.tickethome.model.InfoPayment.get_instance;
+import static com.example.huynhhq.tickethome.model.MyProgressBar.dismiss;
+import static com.example.huynhhq.tickethome.model.MyProgressBar.show;
 
 public class SaveEventsActivity extends AppCompatActivity {
 
+    final String EVENT_BUNDLE_KEY = "EVENT_BUNDLE_KEY";
     final String TAG = "SaveEventsActivity";
+    public final static int TYPE = 1;
     private RecyclerView rcv;
     private EventListApdater adapter;
     private List<Event> listEvents;
+    private InteresteventService interesteventService;
+    Payment payment;
+    List<Event> filteredList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_events);
+        interesteventService = ServiceManager.getInteresteventService();
+        payment = get_instance();
         configToolbar();
         bindingView();
-        adapter = new EventListApdater(listEvents, SaveEventsActivity.this, rowClickListener, R.layout.item_event_list);
+        String username = payment.getUsername();
+        show(SaveEventsActivity.this);
+        interesteventService.getInterestevent(username).enqueue(new Callback<List<Event>>() {
+            @Override
+            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+                dismiss();
+                if(response.isSuccessful()){
+                    listEvents = response.body();
+                    filteredList = filteredList(listEvents);
+                    if(filteredList.size() != 0){
+                        adapter = new EventListApdater(filteredList, SaveEventsActivity.this, rowClickListener, R.layout.item_saved_evnt);
+                        rcv.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                }else {
+                    Log.d(TAG, "onResponse: ELSE");
+                    System.out.println(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Event>> call, Throwable t) {
+                dismiss();
+                Log.d(TAG, "onFailure: Something wrong!");
+                t.printStackTrace();
+            }
+        });
     }
 
     private void bindingView(){
@@ -46,11 +93,11 @@ public class SaveEventsActivity extends AppCompatActivity {
 
         @Override
         public void itemClick(View view, int position) {
-//            Event event = listEvents.get(position);
-//            Intent intent = new Intent(MainScreenActivity.this, EventDetailActivity.class);
-//            Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
-//            intent.putExtra(EVENT_BUNDLE_KEY, event);
-//            startActivity(intent, bndlanimation);
+            Event event = filteredList.get(position);
+            Intent intent = new Intent(SaveEventsActivity.this, EventDetailActivity.class);
+            Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.animation_go, R.anim.animation_back).toBundle();
+            intent.putExtra(EVENT_BUNDLE_KEY, event);
+            startActivity(intent, bndlanimation);
         }
     };
 
@@ -80,5 +127,16 @@ public class SaveEventsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+    }
+
+    private List<Event> filteredList(List<Event> list){
+        List<Event> filteredList = new ArrayList<>();
+        for (Event temp: list
+             ) {
+                if(temp.isCheck()){
+                    filteredList.add(temp);
+                }
+        }
+        return filteredList;
     }
 }

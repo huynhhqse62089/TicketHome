@@ -34,8 +34,10 @@ public class SuccessfulBookActivity extends AppCompatActivity {
             txtCongra.setText("Vui lòng truy cập vào mail để nhận thông tin chyển khoản. Payment Code Của bạn sẽ hết hạn trong vòng 7 ngày, hãy chuyển khoản trong khoảng thời gian sớm nhất để kích hoạt Payment Code.");
         }else if(idPaymentMe.equalsIgnoreCase("TTD")){
             txtCongra.setText("Cám ơn bạn đã đặt vé. Hãy truy cập mail để nhận Payment Code của bạn.");
-        }else {
+        }else if(idPaymentMe.equalsIgnoreCase("TH")){
             txtCongra.setText("Vui lòng đến văn phòng Ticket Home tại số 33 đường 44 phường 14 Quận Gò Vấp để nhận vé. Giờ làm việc: Thứ 2 - Thứ 6: 8:30AM - 7:30PM");
+        }else{
+            txtCongra.setText("Cám ơn bạn đã đăng ký. Hãy truy cập mail để nhận Payment Code của bạn.");
         }
     }
 

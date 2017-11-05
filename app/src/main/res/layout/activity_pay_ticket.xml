@@ -80,7 +80,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:paddingTop="10dp"
-                            android:src="@drawable/ic_person_black_18dp" />
+                            android:src="@drawable/ic_account_green" />
 
                         <TextView
                             android:id="@+id/input_name"
@@ -107,7 +107,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:paddingTop="10dp"
-                            android:src="@drawable/ic_email_black_18dp" />
+                            android:src="@drawable/ic_email_black" />
 
                         <TextView
                             android:id="@+id/input_email"
@@ -134,18 +134,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:paddingTop="10dp"
-                            android:src="@drawable/ic_phone_black_18dp" />
+                            android:src="@drawable/ic_phone_black" />
 
                         <TextView
                             android:id="@+id/input_sdt"
-                            android:layout_toRightOf="@+id/img_phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/img_phone"
                             android:paddingBottom="12dp"
                             android:paddingLeft="8dp"
                             android:paddingRight="12dp"
                             android:paddingTop="12dp" />
-
 
                     </RelativeLayout>
 
@@ -191,7 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/text3"
-                        android:src="@drawable/ic_info_black_18dp" />
+                        android:src="@drawable/ic_info_green" />
 
                 </RelativeLayout>
 
@@ -226,7 +225,7 @@
                             android:layout_gravity="center"
                             android:layout_toRightOf="@+id/id_bank"
                             android:background="@drawable/border_pay_textview"
-                            android:drawableLeft="@drawable/ic_account_balance_black_18dp"
+                            android:drawableLeft="@drawable/ic_account_balance_green_24dp"
                             android:drawablePadding="5dp"
                             android:gravity="left|center"
                             android:singleLine="true"
@@ -304,7 +303,7 @@
                             android:layout_gravity="center"
                             android:layout_toRightOf="@+id/id_ckbank"
                             android:background="@drawable/border_pay_textview"
-                            android:drawableLeft="@drawable/ic_swap_horiz_black_18dp"
+                            android:drawableLeft="@drawable/ic_swap_horiz_green_24dp"
                             android:drawablePadding="5dp"
                             android:gravity="left|center"
                             android:singleLine="true"
@@ -396,12 +395,14 @@
 
                         <TextView
                             android:id="@+id/txtStatus2"
+                            android:layout_toRightOf="@+id/id_ttd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
                             android:layout_gravity="center"
-                            android:layout_toRightOf="@+id/id_ttd"
                             android:background="@drawable/border_pay_textview"
-                            android:drawableLeft="@drawable/ic_credit_card_black_18dp"
+                            android:drawableLeft="@drawable/ic_credit_card_green"
                             android:drawablePadding="5dp"
                             android:gravity="left|center"
                             android:singleLine="true"
@@ -457,9 +458,9 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/text4"
-                        android:src="@drawable/ic_info_black_18dp" />
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@+id/text4"
+                        android:src="@drawable/ic_info_green" />
 
                 </RelativeLayout>
 
@@ -492,7 +493,7 @@
                             android:layout_gravity="center"
                             android:layout_toRightOf="@+id/id_cod"
                             android:background="@drawable/border_pay_textview"
-                            android:drawableLeft="@drawable/ic_local_shipping_black_18dp"
+                            android:drawableLeft="@drawable/ic_local_shipping_green"
                             android:drawablePadding="5dp"
                             android:gravity="left|center"
                             android:singleLine="true"
@@ -596,7 +597,7 @@
                             android:layout_gravity="center"
                             android:layout_toRightOf="@+id/id_building"
                             android:background="@drawable/border_pay_textview"
-                            android:drawableLeft="@drawable/ic_location_city_black_18dp"
+                            android:drawableLeft="@drawable/ic_location_city_green"
                             android:drawablePadding="5dp"
                             android:gravity="left|center"
                             android:singleLine="true"
